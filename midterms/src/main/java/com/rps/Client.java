@@ -1,4 +1,4 @@
-package com.rps;
+package com.rps.waraferek;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -20,7 +20,7 @@ public class Client {
             System.out.println(identity);
             boolean isPlayer1 = identity.contains("PLAYER 1");
 
-            // Log in / Sign up loop
+            // Log in or Sign up loop
             while (true) {
                 System.out.println("""
                         ===================================
@@ -46,7 +46,7 @@ public class Client {
                 out.println(input.nextLine());
 
                 String response = in.readLine();
-                System.out.println("SERVER: " + response);
+                System.out.println(response);
 
                 if (response.contains("Welcome") || response.contains("successfully"))
                     break;
@@ -88,7 +88,7 @@ public class Client {
                     }
                     out.println(p2ready);
 
-                    // Read Player 1's action from server
+                    // Read Player 1 action from server
                     String actionLine = in.readLine();
                     if (actionLine != null && actionLine.contains(":")) {
                         actionChoice = actionLine.split(":")[1].trim();
@@ -97,8 +97,8 @@ public class Client {
 
                 if ("1".equals(actionChoice)) {
                     System.out.println("\n========================================");
-                    System.out.println("              " + in.readLine()); // "GAME STARTS NOW"
-                    System.out.println("            " + in.readLine()); // "p1 VS p2"
+                    System.out.println("                " + in.readLine()); // "GAME STARTS NOW"
+                    System.out.println("              " + in.readLine()); // "p1 VS p2"
                     System.out.println("========================================");
 
                     String roundHeader;
@@ -117,15 +117,17 @@ public class Client {
                         }
                         out.println(move);
 
-                        String result = in.readLine(); //display round result
-                        System.out.println(result);
-                        in.readLine(); //END
+                        String picks = in.readLine(); //"Player 1 picked Rock | Player 2 picked Paper"
+                        String winner = in.readLine(); //"Result: Player 2 wins this round"
+                        System.out.println(picks);
+                        System.out.println(winner);
+                        in.readLine(); // catch "END" SIGNAL
                     }
 
-                    System.out.println("\n============== GAME OVER ==============");
+                    System.out.println("\nGAME OVER...");
                     System.out.println(in.readLine()); // Overall winner
 
-                    // Read leaderboard
+                    // DISPLAY LEADERBOARD
                     System.out.println("\n============= LEADERBOARD =============");
                     String line;
                     while ((line = in.readLine()) != null && !line.equals("END")) {

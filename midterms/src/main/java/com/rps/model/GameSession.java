@@ -1,4 +1,4 @@
-package com.rps.model;
+package com.rps.waraferek;
 
 // encapsulation
 // manages the round match logic between two players
@@ -52,33 +52,37 @@ public class GameSession {
         this.p2move = move;
     }
 
-    //determine the winner every round, this is the logic of the game
-   public String playRound() {
-        int roundResult = p1move.compare(p2move);
-        switch (roundResult) {
-            case 0 :
-                 return "Draw";
-                 break;
-            case 1 :
-                p1Score++;
-                return p1.getUsername() + " wins this round";
-                break;
-            default:
-                p2Score++;
-                return p2.getUsername() + " wins this round";
+    // determine the winner every round, this is the logic of the game
+    public String playRound() {
+    String moveDetails = p1.getUsername() + " picked " + p1move.getMoveName() + " | " +
+                         p2.getUsername() + " picked " + p2move.getMoveName() + "\n";
+
+    int roundResult = p1move.compare(p2move);
+    switch (roundResult) {
+        case 0 -> {
+            return moveDetails + "Result: Draw";
+        }
+        case 1 -> {
+            p1Score++;
+            return moveDetails + "Result: " + p1.getUsername() + " wins this round";
+        }
+        default -> {
+            p2Score++;
+            return moveDetails + "Result: " + p2.getUsername() + " wins this round";
         }
     }
+}
 
-    //determine the winner aftr 10 rounds
+    // determine the winner aftr 10 rounds
     public String determineOverallWinner() {
         if (p1Score > p2Score) {
-            p1.setWins(p1.getWins() + 1);
-            return p1.getUsername() + " wins the match! (" + p1Score + " - " + p2Score + ")";
+            p1.incrementWins();
+            return p1.getUsername() + " wins the match!";
         } else if (p2Score > p1Score) {
-            p2.setWins(p2.getWins() + 1);
-            return p2.getUsername() + " wins the match! (" + p2Score + " - " + p1Score + ")";
+            p2.incrementWins();
+            return p2.getUsername() + " wins the match!";
         } else {
-            return "Match is a draw! (" + p1Score + " - " + p2Score + ")";
+            return "Match is a draw!";
         }
     }
 }

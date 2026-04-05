@@ -1,4 +1,4 @@
-package com.rps.model;
+package com.rps.waraferek;
 
 public abstract class GameMove {
     //encapsulation

@@ -1,4 +1,4 @@
-package com.rps.model;
+package com.rps.waraferek;
 
 //inheritance
 public class Rock extends GameMove {

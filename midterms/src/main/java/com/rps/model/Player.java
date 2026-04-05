@@ -1,19 +1,20 @@
-package com.rps.model;
+package com.rps.waraferek;
+
 //encapsulation
 public class Player {
-    //private fields
-    private String username; //used for identification
+    // private fields
+    private String username; // used for identification
     private String password; // for security
     private int wins; // wins every match
 
-    //constructor: called when loadeing from json or creating a new account
+    // constructor: called when loadeing from json or creating a new account
     public Player(String username, String password, int wins) {
-        this.username = username; 
-        this.password = password; 
+        this.username = username;
+        this.password = password;
         this.wins = wins;
     }
-    
-    //getters and setters
+
+    // getters and setters
     public String getUsername() {
         return username;
     }
@@ -36,5 +37,8 @@ public class Player {
 
     public void setWins(int wins) {
         this.wins = wins;
+    }
+    public void incrementWins() {
+        this.wins++;
     }
 }

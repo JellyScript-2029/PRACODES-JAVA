@@ -1,9 +1,4 @@
-package com.rps.service;
-import com.rps.model.GameMove;
-import com.rps.model.Paper;
-import com.rps.model.Player;
-import com.rps.model.Rock;
-import com.rps.model.Scissors;
+package com.rps.waraferek;
 
 public class GameService {
     

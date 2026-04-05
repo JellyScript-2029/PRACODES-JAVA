@@ -1,4 +1,4 @@
-package com.rps.service;
+package com.rps.waraferek;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -9,13 +9,12 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.rps.model.Player;
 
 public class UserService {
     //list of all players loeaded from Players.json
     public static ArrayList<Player> players = new ArrayList<>();
     //path to json file
-    public static final String filename = "C:\\Users\\figue\\OneDrive\\Documents\\MidtermExam\\midterms\\data\\Players.json";
+    public static final String filename = "C:\\Users\\figue\\PRACODES-JAVA\\midterms\\data\\Players.json";
 
     //verifies credentials
     public static String login(String username, String password) {

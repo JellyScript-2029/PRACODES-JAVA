@@ -1,4 +1,4 @@
-package com.rps;
+package com.rps.waraferek;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,11 +6,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-
-import com.rps.model.GameSession;
-import com.rps.model.Player;
-import com.rps.service.GameService;
-import com.rps.service.UserService;
 
 public class Server {
     public static void main(String[] args) {
@@ -41,13 +36,12 @@ public class Server {
                 out2.println("MENU");
 
                 String choice = in1.readLine(); // receives client 1 response from ([1] play [2] log out)menu
-                String p2ready = in2.readLine();
+                String p2ready = in2.readLine(); // receives client 2 response play or quit
 
                 if (p2ready.equalsIgnoreCase("quit")) {
                     out1.println("Opponent quit. Closing...");
                     return;
                 }
-                // IMPORTANT: Added a space after the colon for easier splitting
                 out2.println("Action: " + choice);
 
                 if (choice.equals("1")) {
@@ -80,7 +74,7 @@ public class Server {
                     // the game over signal, without this the client's while loop would never exit
                     out1.println("GAME_OVER");
                     out2.println("GAME_OVER");
-                    
+
                     // shows the winner after 10 rounds
                     out1.println(session.determineOverallWinner());
                     out2.println(session.determineOverallWinner());

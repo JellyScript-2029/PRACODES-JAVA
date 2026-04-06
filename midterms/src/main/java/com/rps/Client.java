@@ -33,7 +33,8 @@ public class Client {
                 while (true) {
                     System.out.print("Choice: ");
                     choice = input.nextLine().trim();
-                    if (choice.equals("1") || choice.equals("2")) break;
+                    if (choice.equals("1") || choice.equals("2"))
+                        break;
                     System.out.println("Invalid input! Please enter 1 or 2 only.");
                 }
                 out.println(choice);
@@ -52,8 +53,9 @@ public class Client {
 
             // Main Game Loop
             while (true) {
-                String signal = in.readLine(); //"MENU"
-                if (signal == null || signal.equals("LOGOUT")) break;
+                String signal = in.readLine(); // "MENU"
+                if (signal == null || signal.equals("LOGOUT"))
+                    break;
 
                 String myChoice = "";
                 if (isPlayer1) {
@@ -67,13 +69,14 @@ public class Client {
                     while (true) {
                         System.out.print("Choice: ");
                         myChoice = input.nextLine().trim();
-                        if (myChoice.equals("1") || myChoice.equals("2")) break;
+                        if (myChoice.equals("1") || myChoice.equals("2"))
+                            break;
                         System.out.println("Invalid input! Please enter 1 or 2 only.");
                     }
                     out.println(myChoice);
                 } else {
                     System.out.println("Waiting for Player 1 to decide...");
-                    String p1Status = in.readLine(); //"P1_CHOICE:X"
+                    String p1Status = in.readLine(); // "P1_CHOICE:X"
                     if (p1Status == null || p1Status.contains(":2")) {
                         System.out.println("Opponent is logging out.");
                         break;
@@ -82,25 +85,26 @@ public class Client {
                     while (true) {
                         System.out.print("Choice: ");
                         myChoice = input.nextLine().trim();
-                        if (myChoice.equals("1") || myChoice.equals("2")) break;
+                        if (myChoice.equals("1") || myChoice.equals("2"))
+                            break;
                         System.out.println("Invalid! Enter 1 to Accept or 2 to Logout.");
                     }
                     out.println(myChoice);
                 }
 
                 // If user chose logout, exit loop
-                if (myChoice.equals("2")) break;
+                if (myChoice.equals("2"))
+                    break;
 
-                //See if game starts or opponent declined
-                String serverResponse = in.readLine(); 
+                // See if game starts or opponent declined
+                String serverResponse = in.readLine();
                 if (serverResponse == null || serverResponse.equals("OPPONENT_LEFT")) {
                     System.out.println("The match was cancelled (Opponent declined).");
                     break;
                 }
 
-               
                 System.out.println("\n========================================");
-                System.out.println("             " + serverResponse);  // "GAME STARTS NOW"
+                System.out.println("             " + serverResponse); // "GAME STARTS NOW"
                 System.out.println("            " + in.readLine()); // "p1 VS p2"
                 System.out.println("========================================");
 
@@ -115,7 +119,8 @@ public class Client {
                     while (true) {
                         System.out.print("Your move: ");
                         move = input.nextLine().trim();
-                        if (move.equals("0") || move.equals("1") || move.equals("2")) break;
+                        if (move.equals("0") || move.equals("1") || move.equals("2"))
+                            break;
                         System.out.println("Invalid! Enter 0, 1, or 2.");
                     }
                     out.println(move);
@@ -128,12 +133,12 @@ public class Client {
                 System.out.println(in.readLine()); // Overall winner
 
                 // Display Leaderboard (Win Rate Type)
-                System.out.println("\n----------------- L E A D E R B O A R D --------------------");
+                System.out.println("\n------------ L E A D E R B O A R D ---------------");
                 String lbLine;
                 while ((lbLine = in.readLine()) != null && !lbLine.equals("LB_END")) {
                     System.out.println(lbLine);
                 }
-                System.out.println("----------------------------------------------------------");
+                System.out.println("-------------------------------------------------");
             }
 
         } catch (Exception e) {

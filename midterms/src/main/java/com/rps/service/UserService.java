@@ -1,5 +1,4 @@
-package com.rps.waraferek;
-
+package com.rps.service;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,12 +8,13 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.rps.model.Player;
 
 public class UserService {
     //list of all players loeaded from Players.json
     public static ArrayList<Player> players = new ArrayList<>();
     //path to json file
-    public static final String filename = "C:\\Users\\figue\\PRACODES-JAVA\\midterms\\data\\Players.json";
+    public static final String filename = "C:\\Users\\figue\\PRACODES-JAVA\\midterms\\src\\data\\Players.json";
 
     //verifies credentials
     public static String login(String username, String password) {
@@ -33,21 +33,23 @@ public class UserService {
                 return "Username already taken!";
         }
         //else create and register a new player
-        Player newPlayer = new Player(username, password, 0);
+        Player newPlayer = new Player(username, password, 0, 0);
         players.add(newPlayer);
         saveToJson();
         return "Account successfully created! \n\tWelcome, " + username;
     }
 
     //builds a formatted leaderboard String sort by wins
-    public static String getLeaderboardperMatch() {
-        // Sort the players list by wins from Highest to Lowest
-        players.sort((p1, p2) -> p2.getWins() - p1.getWins());
- 
-        // Build the player rows
+    public static String getLeaderboardByWinRate() {
+        // Sort by win rate descending
+        players.sort((p1, p2) -> Double.compare(p2.getWinRate(), p1.getWinRate()));
+
         StringBuilder result = new StringBuilder();
+        result.append(String.format("%-15s %-10s %-10s %-10s\n", "Username", "Wins", "Played", "Win Rate"));
+        result.append("----------------------------------------------------------\n");
         for (Player p : players) {
-            result.append(String.format("%-20s %10d wins\n", p.getUsername(), p.getWins()));
+            result.append(String.format("%-15s %-10d %-10d %-10.2f%%\n", 
+                p.getUsername(), p.getWins(), p.getGamesPlayed(), p.getWinRate()));
         }
         return result.toString();
     }

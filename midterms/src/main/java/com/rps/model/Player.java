@@ -1,4 +1,4 @@
-package com.rps.waraferek;
+package com.rps.model;
 
 //encapsulation
 public class Player {
@@ -6,12 +6,14 @@ public class Player {
     private String username; // used for identification
     private String password; // for security
     private int wins; // wins every match
+    private int gamesPlayed; //
 
     // constructor: called when loadeing from json or creating a new account
-    public Player(String username, String password, int wins) {
+    public Player(String username, String password, int wins, int gamesPlayed) {
         this.username = username;
         this.password = password;
         this.wins = wins;
+        this.gamesPlayed = gamesPlayed;
     }
 
     // getters and setters
@@ -35,10 +37,21 @@ public class Player {
         return wins;
     }
 
-    public void setWins(int wins) {
-        this.wins = wins;
+    public int getGamesPlayed() {
+        return gamesPlayed;
     }
+
     public void incrementWins() {
         this.wins++;
+    }
+
+    public void incrementGamesPlayed() {
+        this.gamesPlayed++;
+    }
+
+    public double getWinRate() {
+        if (gamesPlayed == 0)
+            return 0.0;
+        return ((double) wins / gamesPlayed) * 100;
     }
 }

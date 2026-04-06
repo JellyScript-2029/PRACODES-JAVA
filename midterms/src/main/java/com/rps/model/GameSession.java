@@ -1,4 +1,4 @@
-package com.rps.waraferek;
+package com.rps.model;
 
 // encapsulation
 // manages the round match logic between two players

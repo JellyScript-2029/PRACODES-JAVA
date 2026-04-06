@@ -1,4 +1,6 @@
-package com.rps.waraferek;
+package com.rps.service;
+
+import com.rps.model.*;
 
 public class GameService {
     
